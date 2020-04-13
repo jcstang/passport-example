@@ -38,9 +38,10 @@ module.exports = function (sequelize, DataTypes) {
     // })
 
     User.beforeCreate(function(user, options) {
-        return hashPassword(user.password).then(function(hashedPw) {
-            user.password = hashedPw;
-        });
+        // return hashPassword(user.password).then(function(hashedPw) {
+        //     user.password = hashedPw;
+        // });
+        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     });
 
     return User;
