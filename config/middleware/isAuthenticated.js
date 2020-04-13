@@ -2,7 +2,8 @@ const debug = require('debug')('isAuthenticated');
 
 module.exports = function(req, res, next) {
     console.log('^^^^^^^ hey yall ^^^^^^^^^^^^^^^');
-    debug(req);
+    debug(req.user);
+    
     if(req.user) {
         return next();
     }
