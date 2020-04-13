@@ -4,9 +4,6 @@ var session = require('express-session');
 var passport = require("./config/passport");
 var morgan = require("morgan");
 var debug = require("debug")('app');
-var name = 'passport-example-app';
-
-debug('booting %o', name);
 
 var PORT = process.env.PORT || 8100;
 var db = require("./models");
@@ -19,7 +16,7 @@ app.use(express.static("public"));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(morgan('combined'));
+app.use(morgan('common'));
 
 
 // routes
@@ -33,6 +30,7 @@ require("./routes/api-routes.js")(app);
 
 db.sequelize.sync().then(function() {
     app.listen(PORT, function() {
-        console.log("==> boom listening on port %s. viist http://localhost:%s/ in your browser.", PORT, PORT);
+        console.log("Hey ==> boom listening on port %s. viist http://localhost:%s/ in your browser.", PORT, PORT);
+        debug(`=============================== app starting on ${PORT} ===========================================`);
     });
 });
