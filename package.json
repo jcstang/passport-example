@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "watch": "nodemon app.js"
+    "watch": "nodemon app.js",
+    "debug": "DEBUG=* nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,8 @@
     "sequelize": "^5.21.6"
   },
   "devDependencies": {
+    "debug": "^4.1.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.3"
   }
 }

@@ -2,6 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require("./config/passport");
+var morgan = require("morgan");
+var debug = require("debug")('app');
+var name = 'passport-example-app';
+
+debug('booting %o', name);
 
 var PORT = process.env.PORT || 8100;
 var db = require("./models");
@@ -14,6 +19,7 @@ app.use(express.static("public"));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(morgan('combined'));
 
 
 // routes
